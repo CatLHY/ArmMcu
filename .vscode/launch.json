@@ -1,0 +1,64 @@
+/*******************************************************
+cwd:项目路径
+configFiles:要加载的OpenOCD配置文件
+device:目标设备标识符
+接口:用于连接的调试接口类型(默认为SWD) -用于J-Link和BMP探针。
+name:配置名称;显示在启动配置下拉菜单中。
+preLaunchTask:在调试会话开始之前运行的任务。指定在tasks.json中定义的任务。
+request:配置请求类型。可以是“发射”或“附加”。
+runToEntryPoint:如果启用，调试器将运行，直到主函数开始。
+serialNumber: J-Link专用参数。J-Link序列号-仅当多个J-Link连接到计算机时需要
+servertype: GDB服务器类型—支持jlink、openocd、pyocd、pe、stutil
+svdFile:描述微控制器外设的SVD文件的路径;如果没有提供，那么可以根据输入的“设备”选择一个。这可能会根据“设备”自动加载。
+swoConfig: SWO/ITM配置。
+enabled:开启SWO解码。
+cpuFrequency: CPU的目标频率，单位为Hz。
+swoffrequency: SWO频率，单位为Hz。
+source:SWO数据来源。可以是“探针”直接从调试探针获得，也可以是串行端口设备使用调试探针外部的串行端口。
+decoders:SWO解码器配置
+label:输出窗口的标签。
+port: ITM端口号
+*********************************************************/
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (openocd)",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/bin/fm33_main.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "interface": "swd",
+            //"target": "",
+            "configFiles": [
+                "interface:/usr/local/share/openocd/scripts/interface/cmsis-dap.cfg",
+                "target:/usr/local/share/openocd/scripts/target/stm32g4x.cfg"
+            ]
+        },
+        {
+            "name": "Debug(pyOCD)",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/bin/fm33_main.hex",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "pyocd",
+            "serverArgs": [
+              "--target",
+              "FM33LG02X",  
+              "--pack",
+              "${workspaceFolder}/FMSH.FM33LG0XX_DFP.3.0.1.pack",        
+            ],
+            //"svdFile": "app/bluetooth_interphone_master/FM33LG0XX.SVD",
+            //"preLaunchTask": "make",
+            //"preLaunchCommands": [  //定义在调试之前要运行的任务 
+            //      "make",
+            //  ],
+             "showDevDebugOutput":"raw",
+          
+          },
+    ]
+}
+

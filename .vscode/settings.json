@@ -1,0 +1,18 @@
+{
+    "clangd.path": "/usr/bin/clangd",
+    "clangd.fallbackFlags": [
+        "-I${workspaceFolder}/CMSIS/FM33LG0xx/Include",
+        "-I${workspaceFolder}/Core_Libs/FM33LG0xx_FL_Driver/Inc",
+        "-I${workspaceFolder}/header"
+    ],
+    "cortex-debug.armToolchainPath": "-I${workspaceFolder}/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/bin",
+    "cortex-debug.armToolchainPrefix": "arm-none-eabi",
+    //"cortex-debug.openocdPath": "/usr/local/bin",
+    //"cortex-debug.pyocdPath": "",
+    //"cortex-debug.gdbPath": "-I${workspaceFolder}/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/bin",
+    "cortex-debug.gdbPath": "/usr/bin/gdb-multiarch",
+    "cortex-debug.objdumpPath": "-I${workspaceFolder}/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/bin",
+    "cortex-debug.showRTOS": true,
+    "cortex-debug.showDevDebugOutput": "none",
+    
+}
